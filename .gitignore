@@ -1,0 +1,25 @@
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- IDE (PyCharm / IntelliJ / VSCode) ---
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# --- Python & Virtual Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+*.log
+
+# --- RAG & Vector Database (Local Data) ---
+# اگر در مراحل بعد دیتابیس Chroma را روی هارد ذخیره کردید، نیازی به پوش کردن فایل‌های دیتابیس نیست
+chroma_db/
+*.db
+*.sqlite3
