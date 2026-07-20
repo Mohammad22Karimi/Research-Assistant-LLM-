@@ -1,0 +1,15 @@
+# PDF text extraction (imported as "fitz")
+pymupdf
+
+# Embedding model (all-MiniLM-L6-v2)
+sentence-transformers
+
+# Vector database
+chromadb
+
+# Tables and charts
+pandas
+matplotlib
+
+# Python client for the local Ollama server (Llama 3.1 8B)
+ollama
