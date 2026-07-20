@@ -22,4 +22,6 @@ env/
 # اگر در مراحل بعد دیتابیس Chroma را روی هارد ذخیره کردید، نیازی به پوش کردن فایل‌های دیتابیس نیست
 chroma_db/
 *.db
-*.sqlite3
+*.sqlite3database/
+database_test/
+database/
