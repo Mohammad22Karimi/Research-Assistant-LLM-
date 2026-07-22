@@ -22,7 +22,8 @@ project/
 │   ├── chunking.py          # Stage 2: 500-word chunks with 50-word overlap
 │   ├── embeddings.py        # Stage 3: all-MiniLM-L6-v2 sentence embeddings
 │   ├── vector_db.py         # Stage 4: ChromaDB store + similarity search
-│   └── llm.py               # wrapper around local Llama 3.1 8B (Ollama)
+│   ├── llm.py               # wrapper around local Llama 3.1 8B (Ollama)
+│   └── voice.py             # Bonus: Whisper STT + pyttsx3 TTS (fully offline)
 ├── rag/
 │   ├── pipeline.py          # Stage 5: RAG pipeline + Stage 7: fallback
 │   └── router.py            # Stage 6: LLM decides which function to call
@@ -33,6 +34,8 @@ project/
 │   ├── research_gap.py        # find_research_gap()              [bonus]
 │   ├── references.py          # compare_references()             [bonus]
 │   └── limitations.py         # compare_limitations()            [bonus]
+├── ui/
+│   └── app.py               # Bonus: Streamlit web UI (text + voice + quick-action tabs)
 ├── main.py                  # Stage 8: menu-based CLI
 ├── requirements.txt
 └── README.md
@@ -147,7 +150,35 @@ future work), `compare_references()` (references counted per publication
 year — pure regex, no LLM needed — table + chart) and
 `compare_limitations()` (weaknesses of each method compared).
 
+## Voice assistant
+
+`utils/voice.py` adds two capabilities:
+
+* **Speech-to-text** — OpenAI Whisper "tiny" model runs entirely on CPU
+  (~75 MB). `transcribe(audio_path)` converts any recorded audio file to
+  text in a few seconds.
+* **Text-to-speech** — pyttsx3 uses the operating system's built-in TTS
+  engine (no extra download). `speak(text)` reads the answer aloud.
+
+Both are fully offline. The Streamlit UI wires them together: record a
+question with the microphone, click "Transcribe & Ask", and the answer is
+both displayed and spoken.
+
+## Web UI
+
+`ui/app.py` launches a Streamlit interface (usually at
+`http://localhost:8501`) with three tabs:
+
+* 💬 Text — type a question; the LLM router decides whether to answer
+  with RAG or call an analysis function.
+* 🎙️ Voice — record from the microphone; the question is transcribed,
+  answered, and read aloud.
+* ⚙️ Actions — one-click buttons for all six analysis functions without
+  needing to type a question.
+
 ## How to run
+
+### CLI (terminal)
 
 1. **Install Ollama** (https://ollama.com) and pull the model once:
 
@@ -155,39 +186,46 @@ year — pure regex, no LLM needed — table + chart) and
    ollama pull llama3.1:8b
    ```
 
-2. **Install the Python packages** (Python 3.10+ recommended):
+2. **Install Python packages** (Python 3.10+ recommended):
 
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Add papers:** copy at least 4 PDFs of comparable papers (same topic,
-   ideally same benchmark) into the `papers/` folder.
+3. **Add papers:** copy at least 4 PDFs into the `papers/` folder.
 
-4. **Start the assistant:**
+4. **Run:**
 
    ```bash
    python main.py
    ```
 
-5. In the menu, first run **option 1** (build the knowledge base — needed
-   once, or whenever the PDFs change), then use the other options, e.g.:
+   First choose option 1 to build the knowledge base, then use the other
+   options freely.
 
-   ```
-   Ask your question:
-   > Which paper achieved the best accuracy?
-   ```
+### Web UI (browser)
+
+Same setup steps 1–3 above, then:
+
+```bash
+streamlit run ui/app.py
+```
+
+Streamlit opens the browser automatically (usually `http://localhost:8501`).
 
 ## Required packages
 
-| Package               | Used for                                   |
-|-----------------------|--------------------------------------------|
-| pymupdf               | PDF text extraction (Stage 1)              |
-| sentence-transformers | chunk/question embeddings (Stage 3)        |
-| chromadb              | vector database (Stage 4)                  |
-| pandas                | metric tables (Stage 6)                    |
-| matplotlib            | comparison charts (Stage 6)                |
-| ollama                | talking to the local Llama 3.1 8B (Stage 5)|
+| Package               | Used for                                        |
+|-----------------------|-------------------------------------------------|
+| pymupdf               | PDF text extraction (Stage 1)                   |
+| sentence-transformers | chunk/question embeddings (Stage 3)             |
+| chromadb              | vector database (Stage 4)                       |
+| pandas                | metric tables (Stage 6)                         |
+| matplotlib            | comparison charts (Stage 6)                     |
+| ollama                | local Llama 3.1 8B generation (Stage 5)         |
+| streamlit             | web UI (bonus)                                  |
+| openai-whisper        | local speech-to-text / voice input (bonus)      |
+| pyttsx3               | text-to-speech / voice output (bonus)           |
 
 ## Known limitations
 

@@ -13,3 +13,12 @@ matplotlib
 
 # Python client for the local Ollama server (Llama 3.1 8B)
 ollama
+
+# Web UI
+streamlit
+
+# Voice: speech-to-text (local Whisper tiny model)
+openai-whisper
+
+# Voice: text-to-speech (uses OS built-in engine, no download)
+pyttsx3
