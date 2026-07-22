@@ -1,36 +1,36 @@
-Here is a mini survey in Markdown with exactly five sections:
+Here is the mini survey in Markdown with exactly five sections:
 
-### Introduction to the problem
-Object detection is a crucial task in computer vision, with applications in autonomous driving, robotics, medical image analysis, and more. However, designing an object detection model that balances accuracy with efficiency remains a challenge.
+### Introduction to the Problem
+Object detection is a fundamental task in computer vision, crucial for various applications such as autonomous driving, robotics, and medical image analysis. However, designing fast and accurate object detection models that can operate in real-time on conventional GPUs remains a significant challenge.
 
-### Summary of each paper
+### Summary of Each Paper
 #### DETR
-The DETR (DEtection TRansformer) method uses a transformer architecture to directly predict the bounding boxes and class labels of objects in an image. It achieves competitive performance with state-of-the-art Faster R-CNN models on the COCO dataset, but requires significant computational resources.
+The paper proposes a new method called DETR (DEtection TRansformer), which uses a transformer-based architecture to directly predict object bounding boxes and class labels without the need for region proposal networks or non-maximum suppression. DETR achieves competitive results with fewer parameters and faster inference times on the COCO dataset.
 
 #### EfficientDet
-EfficientDet is a new family of object detectors that balances accuracy with efficiency. It combines two key optimizations: (1) a weighted bi-directional feature pyramid network (BiFPN), and (2) a compound scaling method that uniformly scales the resolution, depth, and width of all networks. EfficientDet consistently achieves state-of-the-art accuracy with much fewer parameters and FLOPs than previous detectors.
+The authors address the problem of model efficiency in object detection by proposing two key optimizations: (1) a weighted bi-directional feature pyramid network (BiFPN), which allows for efficient multi-scale feature fusion, and (2) a compound scaling method that uniformly scales the resolution, depth, and width of all backbone, feature network, and box/class prediction networks. EfficientDet consistently achieves better accuracy with much fewer parameters and FLOPs than previous detectors.
 
 #### YOLOv4
-YOLOv4 is a fast and accurate object detection model designed to operate in real-time on conventional GPUs. It combines several features to achieve high accuracy and speed, including Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), and Self-adversarial-training (SAT). YOLOv4 achieves state-of-the-art results on the MS COCO dataset with a real-time speed of ∼65 FPS.
+The paper proposes YOLOv4, which combines several state-of-the-art features such as Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), and Mish activation. YOLOv4 achieves state-of-the-art results on the MS COCO dataset with a real-time speed of ∼65 FPS on Tesla V100.
 
 #### YOLOv7
-YOLOv7 is a new real-time object detector that surpasses all known detectors in both speed and accuracy. It achieves 56.8% AP (average precision) on the COCO dataset with 30 FPS or higher on GPU V100, outperforming other state-of-the-art detectors by significant margins.
+The paper proposes YOLOv7, which surpasses all known object detectors in both speed and accuracy. It uses trainable bag-of-freebies, which are optimized modules and methods that improve training cost without increasing inference cost. YOLOv7 outperforms other real-time object detectors such as YOLOR, YOLOX, Scaled-YOLOv4, and YOLOv5 in speed and accuracy.
 
-### Comparison of the methods
-The four papers present different approaches to object detection:
+### Comparison of the Methods
+The four papers propose different approaches to address the problem of object detection:
 
-* DETR uses a transformer architecture and requires significant computational resources.
-* EfficientDet balances accuracy with efficiency using two key optimizations: BiFPN and compound scaling.
-* YOLOv4 is designed for real-time object detection and combines several features to achieve high accuracy and speed.
-* YOLOv7 surpasses all known detectors in both speed and accuracy, but requires significant computational resources.
+* DETR uses a transformer-based architecture to directly predict object bounding boxes and class labels.
+* EfficientDet proposes two key optimizations: BiFPN and compound scaling method.
+* YOLOv4 combines several state-of-the-art features such as WRC, CSP, and Mish activation.
+* YOLOv7 uses trainable bag-of-freebies to improve training cost without increasing inference cost.
 
-### Evolution of the methods
-The evolution of object detection methods can be seen as follows:
+### Evolution of the Methods
+The four papers demonstrate an evolution in object detection methods:
 
-* DETR (2020) introduced a transformer architecture for object detection, which achieved competitive performance with state-of-the-art Faster R-CNN models.
-* EfficientDet (2021) built upon previous work and proposed two key optimizations: BiFPN and compound scaling.
-* YOLOv4 (2021) combined several features to achieve high accuracy and speed in real-time object detection.
-* YOLOv7 (2022) surpassed all known detectors in both speed and accuracy, but requires significant computational resources.
+* DETR proposes a new transformer-based architecture that directly predicts object bounding boxes and class labels.
+* EfficientDet builds upon previous work by proposing two key optimizations: BiFPN and compound scaling method.
+* YOLOv4 combines several state-of-the-art features to achieve state-of-the-art results on the MS COCO dataset.
+* YOLOv7 surpasses all known object detectors in both speed and accuracy using trainable bag-of-freebies.
 
 ### Conclusion
-The four papers present different approaches to object detection, each with its strengths and weaknesses. DETR achieves competitive performance with state-of-the-art Faster R-CNN models, but requires significant computational resources. EfficientDet balances accuracy with efficiency using two key optimizations: BiFPN and compound scaling. YOLOv4 is designed for real-time object detection and combines several features to achieve high accuracy and speed. YOLOv7 surpasses all known detectors in both speed and accuracy, but requires significant computational resources.
+The four papers demonstrate significant advancements in object detection methods. DETR proposes a new transformer-based architecture that directly predicts object bounding boxes and class labels, while EfficientDet builds upon previous work by proposing two key optimizations: BiFPN and compound scaling method. YOLOv4 combines several state-of-the-art features to achieve state-of-the-art results on the MS COCO dataset, and YOLOv7 surpasses all known object detectors in both speed and accuracy using trainable bag-of-freebies. These advancements have important implications for various applications such as autonomous driving, robotics, and medical image analysis.
