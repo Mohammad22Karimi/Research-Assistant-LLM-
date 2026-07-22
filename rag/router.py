@@ -18,35 +18,36 @@ from utils import llm
 
 # The routing keywords and what they mean.  main.py maps each keyword to a
 # real Python function.
+# The routing keywords and what they mean.
 ACTIONS = {
-    "ANSWER": "Answer a normal question about the papers' content (default).",
-    "EXTRACT_RESULTS": "Extract experimental metrics (accuracy, F1, mAP, ...) from the papers.",
-    "COMPARE_RESULTS": "Compare the papers' performance with a table and a chart.",
-    "GENERATE_SURVEY": "Write a mini survey of all papers.",
+    "ANSWER": "Default action. Choose this for ALL general questions about methodology, architectures, datasets used, training details, authors, or conceptual explanations.",
+    "EXTRACT_RESULTS": "Choose ONLY when the user explicitly wants to output, print, or extract numeric evaluation tables (AP, mAP, accuracy metrics). Do NOT choose this for conceptual questions about experiments or datasets.",
+    "COMPARE_RESULTS": "Compare the papers' performance or accuracy metrics with a table and a chart.",
+    "GENERATE_SURVEY": "Write a mini survey, literature review, or summarize all papers.",
     "RESEARCH_GAP": "Find limitations, unsolved problems and future work.",
     "COMPARE_REFERENCES": "Compare the papers' reference lists by publication year.",
-    "COMPARE_LIMITATIONS": "Compare the weaknesses/limitations of the methods.",
+    "COMPARE_LIMITATIONS": "Compare the weaknesses or limitations of the methods.",
 }
 
 ROUTER_SYSTEM = (
-    "You are a router. Read the user's request and decide which ONE action "
-    "fits best. Reply with EXACTLY one keyword from the list and nothing else."
+    "You are a precise routing assistant for a research paper analysis system. "
+    "Read the user's request and decide which ONE action fits best. "
+    "Reply with EXACTLY one keyword from the list and nothing else."
 )
 
 
 def build_router_prompt(question):
     """
-    Purpose : Build the routing prompt shown to the LLM.
+    Purpose : Build a purely Zero-Shot routing prompt shown to the LLM.
     Inputs  : question (str) - the user's request.
     Outputs : prompt (str).
     """
     menu = "\n".join(f"- {key}: {desc}" for key, desc in ACTIONS.items())
     return (
-        f"Available actions:\n{menu}\n\n"
+        f"Available actions and strict rules:\n{menu}\n\n"
         f"User request: \"{question}\"\n\n"
         "Which action should be executed? Answer with one keyword only."
     )
-
 
 def route(question):
     """

@@ -19,7 +19,7 @@ TOP_K = 5  # how many chunks are retrieved for each question
 # we assume the papers do not contain the answer.  0.35 was chosen by
 # manually trying a few in-scope and out-of-scope questions: related
 # questions usually score well above 0.4, unrelated ones well below 0.3.
-SIMILARITY_THRESHOLD = 0.35
+SIMILARITY_THRESHOLD = 0.30
 
 
 def retrieve(question, top_k=TOP_K):
