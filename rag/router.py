@@ -20,15 +20,14 @@ from utils import llm
 # real Python function.
 # The routing keywords and what they mean.
 ACTIONS = {
-    "ANSWER": "Default action. Choose this for ALL general questions about methodology, architectures, datasets used, training details, authors, or conceptual explanations.",
-    "EXTRACT_RESULTS": "Choose ONLY when the user explicitly wants to output, print, or extract numeric evaluation tables (AP, mAP, accuracy metrics). Do NOT choose this for conceptual questions about experiments or datasets.",
-    "COMPARE_RESULTS": "Compare the papers' performance or accuracy metrics with a table and a chart.",
+    "ANSWER": "Default action. Choose this for ALL general questions about conceptual differences between methods, methodology, architectures, datasets, or theoretical explanations.",
+    "EXTRACT_RESULTS": "Choose ONLY when the user explicitly wants to output or extract numeric evaluation tables (AP, mAP, accuracy metrics).",
+    "COMPARE_RESULTS": "Choose ONLY when the user explicitly asks to compare NUMERIC results, metrics, or performance (like AP, accuracy). Do NOT choose this for conceptual or theoretical comparisons of the methods.",
     "GENERATE_SURVEY": "Write a mini survey, literature review, or summarize all papers.",
     "RESEARCH_GAP": "Find limitations, unsolved problems and future work.",
-    "COMPARE_REFERENCES": "Compare the papers' reference lists by publication year.",
-    "COMPARE_LIMITATIONS": "Compare the weaknesses or limitations of the methods.",
+    "COMPARE_REFERENCES": "Count or compare the publication years of the cited references.",
+    "COMPARE_LIMITATIONS": "Compare the weaknesses or limitations of the proposed methods."
 }
-
 ROUTER_SYSTEM = (
     "You are a precise routing assistant for a research paper analysis system. "
     "Read the user's request and decide which ONE action fits best. "
