@@ -10,7 +10,7 @@ It simply reuses extract_experimental_results() and adds presentation.
 
 import matplotlib
 
-matplotlib.use("MacOSX")  # save charts to file - works even without a display
+matplotlib.use("macOSX")  # save charts to file - works even without a display
 import matplotlib.pyplot as plt
 
 from functions.results_extraction import extract_experimental_results
